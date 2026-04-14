@@ -111,6 +111,10 @@ This course is designed for researchers, data scientists, and professionals who:
 - From-scratch implementations to understand fundamentals, production libraries for practical applications
 - All code and materials provided for independent learning after the course
 
+### Materials
+
+Slides and workshop guides for the courses are [here](https://courses.mjandrews.org/deep-learning-python).
+
 ### Software
 
 Software requirements and installation instructions are in [software.md](software.md).

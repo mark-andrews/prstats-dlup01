@@ -1,4 +1,5 @@
 import torch
+import matplotlib.pyplot as plt
 import torch.nn as nn
 from torchvision import datasets, transforms
 
@@ -73,6 +74,16 @@ for epoch in range(max_epoch):
     print(epoch_loss)
 
 
+plt.clf()
+plt.plot(losses)
+
+# how many parameters?
+# [100352, 128, 1280, 10]
+sum([p.numel() for p in mlp.parameters()])
 
 
-
+correct = 0
+for X, y in test_loader:
+    preds = mlp(X).argmax(dim = 1)
+    correct += (preds == y).sum().item()
+accuracy = correct / len(test_data)

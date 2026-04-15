@@ -1,11 +1,13 @@
 import torch
-import torchvision
+import torch.nn as nn
 from torchvision import datasets, transforms
 
+# load up data
 transform = transforms.ToTensor()
 train_data = datasets.MNIST(root='data', train=True, download=True, transform=transform)
 test_data = datasets.MNIST(root='data', train=False, download=True, transform=transform)
 
+# Optional: Plot images
 image, label = train_data[0]
 image.shape
 plt.clf() # clear matplotlib image
@@ -15,8 +17,6 @@ plt.imshow(train_data[10101][0][0,:,:], cmap='grey')
 plt.imshow(train_data[37561][0][0,:,:], cmap='grey')
 
 # Set up MLP
-import torch.nn as nn
-
 mlp = nn.Sequential(
     nn.Flatten(),
     # input to hidden layer weight

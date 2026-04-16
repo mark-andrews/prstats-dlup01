@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
+import matplotlib.pyplot as plt
 
 
 conv_layer = nn.Conv2d(1, 32, kernel_size=3, padding=1)
@@ -71,3 +72,18 @@ for epoch in range(max_iter):
         epoch_loss += loss.item()
     losses.append(epoch_loss)
     print(epoch_loss)
+
+correct = 0
+for X,y in test_loader:
+    correct += (conv_net(X).argmax(dim=1) == y).sum()
+
+accuracy = correct / len(test_data)
+accuracy
+
+# 32 filters on conv layer 1 after training
+filters = conv_net.conv1.weight.data
+
+# feature (filter) 1
+plt.imshow(filters[0,0], cmap='grey', interpolation='nearest')
+# feature (filter) 2
+plt.imshow(filters[1,0], cmap='grey', interpolation='nearest')
